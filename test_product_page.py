@@ -19,25 +19,35 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.solve_quiz_and_get_code()
     page.should_be_the_correct_product_name_in_message()
     page.should_be_the_correct_product_price_in_message()
-    
+
+
+url = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = ProductPage(browser, link) 
+    page = ProductPage(browser, url) 
     page.open()
     page.click_add_to_basket_button()
     page.shouldnt_be_success_message()
     
 def test_guest_cant_see_success_message(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = ProductPage(browser, link) 
+    page = ProductPage(browser, url) 
     page.open()
     page.shouldnt_be_success_message()
 
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = ProductPage(browser, link) 
+    page = ProductPage(browser, url) 
     page.open()
     page.click_add_to_basket_button()
     page.should_disappear_success_message()
+    
+def test_guest_should_see_login_link_on_product_page(browser):
+    page = ProductPage(browser, url)
+    page.open()
+    page.should_be_login_link()
+    
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    page = ProductPage(browser, url)
+    page.open()
+    page.go_to_login_page()
