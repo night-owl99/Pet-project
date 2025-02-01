@@ -1,2 +1,2 @@
 # Pet-project
-Project from Stepik course
+Самый первый проект по автотестам (курс со Stepik)
